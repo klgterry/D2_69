@@ -21,38 +21,8 @@ sensor_db = pymysql.connect(
 #cursor = sensor_db.cursor(pymysql.cursors.DictCursor)
 cursor = sensor_db.cursor()
 
-#sql = "DELETE FROM sensor WHERE _id = 2;"
-sql = "SELECT * FROM D2_69.table"
-
-cursor.execute(sql)
-
-data_list = cursor.fetchall()
-#print(data_list)
-
-# Flask 객체 인스턴스 생성
-app = Flask(__name__)
-
-
-@app.route('/')  # 접속하는 url
-def index():
-
-    sql = "SELECT * from D2_69.table"
-    cursor.execute(sql)
-    data_list = cursor.fetchall()
-    print(data_list)
-
-
-    return render_template('index.html', data_list=data_list)
-
-
 # 스크립트를 실행하려면 여백의 녹색 버튼을 누릅니다.
 if __name__ == '__main__':
-    #app.run(debug=True)
-    # host 등을 직접 지정하고 싶다면
-    app.run(host="0.0.0.0", port="8080", debug=True)
-
-    #df = pd.read_excel("69내전기록표_0919_v27_123항목추가_4.xlsm", sheet_name= '현재시즌')
-    #print(df)
 
     load_wb = load_workbook("69내전기록표_0919_v27_123항목추가_4.xlsm", read_only=True, data_only=True)
     print(load_wb.sheetnames)
@@ -113,9 +83,18 @@ if __name__ == '__main__':
     print(tabulate(result, headers='keys', tablefmt='grid', showindex=True, stralign='center'))
 
     i = 0
-    #for i in range(len(rank)):
-    #    sql = "INSERT INTO D2_69.table VALUES(" + '"' + rank[i] + '","' + tier[i] + '","' + id[i] + '","' + str(tier_score[i]) + '","' + str(mmr_rank[i]) + '","' + str(total_game[i]) + '")'
-    #    cur.execute(sql)
-    #conn.commit()
+    for i in range(len(rank)):
+        sql = "INSERT INTO D2_69.table VALUES(" + '"' + rank[i] + '","' + tier[i] + '","' + id[i] + '","' + str(tier_score[i]) + '","' + str(mmr_rank[i]) + '","' + str(total_game[i]) + '")'
+        cursor.execute(sql)
+    sensor_db.commit()
+
+    sql = "SELECT * from D2_69.table"
+    cursor.execute(sql)
+    data_list = cursor.fetchall()
+
+    for data in data_list:
+        print(data)
+
 
 load_wb.close()
+cursor.close()

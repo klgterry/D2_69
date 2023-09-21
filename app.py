@@ -1,5 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import pymysql
+from datetime import datetime
 
 sensor_db = pymysql.connect(
     user='root',
@@ -23,17 +24,32 @@ data_list = cursor.fetchall()
 # Flask 객체 인스턴스 생성
 app = Flask(__name__)
 
-
 @app.route('/')  # 접속하는 url
-def index():
+def main():
 
     sql = "SELECT * from D2_69.table"
     cursor.execute(sql)
     data_list = cursor.fetchall()
     print(data_list)
 
+    return render_template('index.html', data_list=data_list, now=datetime.today())
 
-    return render_template('index.html', data_list=data_list)
+@app.route('/next')
+def next():
+    name = request.args.get('name')
+
+    if name is not None:
+        sql = "SELECT * from D2_69.table where id = " + "'" + name + "'"
+    else:
+        sql = "SELECT * from D2_69.table"
+
+    cursor.execute(sql)
+    data_list = cursor.fetchall()
+    print(data_list)
+
+
+    return render_template("next.html", data_list=data_list, name=name, now=datetime.today())
+
 
 if __name__ == '__main__':
     #app.run(debug=True)

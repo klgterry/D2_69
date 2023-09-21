@@ -22,16 +22,16 @@
 		<img src="../static/new_logo.png" width="200">
 		<br>
 		<br>
-		<!--<a href="#" onclick="lotation.href='next.html'">검색</a>-->
-		<form action="/next">
-        <div class="row">
-            <div class="box">
-                <input type="text" name="name" value="" size="30" placeholder="이름을 입력하세요.">
-				<button onclick="location.href='/next'">검색</button>
-            </div>
-        </div>
-    	</form>
+		{% if (name) %}
+			<p style="color:white;">{{name}}</p>
+		{% else %}
+			<p style="color:white;">현재 시즌 전체 순위</p>
+		{% endif %}
 
+		<button onclick="location.href='/next'">현재시즌 전체 순위표</button><form action="/next">
+    	</form>
+		<br>
+		<button onclick="location.href='/'">메인 화면 이동</button><form action="/">
 	</div>
 
 
@@ -39,7 +39,9 @@
 <body>
 
 <br>
-	<!--<table class="table table-hover table-striped text-center" style=" width: 50%; border: 1px  solid #111114;;margin-left:auto;margin-right:auto;color:white;">
+<br>
+
+	<table class="table table-hover table-striped text-center" style=" width: 50%; border: 1px  solid #111114;;margin-left:auto;margin-right:auto;color:white;">
 		<thead>
 			<tr>
 				<center>
@@ -64,6 +66,6 @@
 			</tr>
 			{% endfor %}
 		</tbody>
-	</table>-->
+	</table>
 </body>
 </html>

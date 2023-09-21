@@ -24,7 +24,7 @@ cursor = sensor_db.cursor()
 # 스크립트를 실행하려면 여백의 녹색 버튼을 누릅니다.
 if __name__ == '__main__':
 
-    load_wb = load_workbook("69내전기록표_0919_v27_123항목추가_4.xlsm", read_only=True, data_only=True)
+    load_wb = load_workbook("xlsm/69내전기록표_0920_v27.xlsm", read_only=True, data_only=True)
     print(load_wb.sheetnames)
 
     load_ws = load_wb['현재시즌']
@@ -62,7 +62,7 @@ if __name__ == '__main__':
     get_cells = load_ws['E84': 'E103']
     for row in get_cells:
         for cell in row:
-            tier_score.append(cell.value)
+            tier_score.append(round(cell.value, 2))
     print(tier_score)
 
     mmr_rank = []
@@ -79,13 +79,15 @@ if __name__ == '__main__':
             total_game.append(cell.value)
     print(total_game)
 
-    result = pd.DataFrame({'전체 순위':rank, '티어':tier, '아이디':id, '티어점수':tier_score, 'MMR순위':mmr_rank, '총 게임수':total_game})
-    print(tabulate(result, headers='keys', tablefmt='grid', showindex=True, stralign='center'))
+    #result = pd.DataFrame({'전체 순위':rank, '티어':tier, '아이디':id, '티어점수':tier_score, 'MMR순위':mmr_rank, '총 게임수':total_game})
+    #print(tabulate(result, headers='keys', tablefmt='grid', showindex=True, stralign='center'))
 
     i = 0
+    index = 1
     for i in range(len(rank)):
-        sql = "INSERT INTO D2_69.table VALUES(" + '"' + rank[i] + '","' + tier[i] + '","' + id[i] + '","' + str(tier_score[i]) + '","' + str(mmr_rank[i]) + '","' + str(total_game[i]) + '")'
+        sql = "INSERT INTO D2_69.table VALUES(" + '"' + str(index) + '","' + rank[i] + '","' + tier[i] + '","' + id[i] + '","' + str(tier_score[i]) + '","' + str(mmr_rank[i]) + '","' + str(total_game[i]) + '")'
         cursor.execute(sql)
+        index = index + 1
     sensor_db.commit()
 
     sql = "SELECT * from D2_69.table"

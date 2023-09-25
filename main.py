@@ -24,10 +24,68 @@ cursor = sensor_db.cursor()
 # 스크립트를 실행하려면 여백의 녹색 버튼을 누릅니다.
 if __name__ == '__main__':
 
-    load_wb = load_workbook("xlsm/69내전기록표_0920_v27.xlsm", read_only=True, data_only=True)
+    load_wb = load_workbook("input/69내전기록표_0920_v27.xlsm", read_only=True, data_only=True)
     print(load_wb.sheetnames)
 
     load_ws = load_wb['현재시즌']
+
+    load_wb_s2 = load_workbook("input/시즌2.xlsx", read_only=True, data_only=True)
+    print(load_wb_s2.sheetnames)
+
+    load_ws_s2 = load_wb_s2['결과']
+
+#####################################################
+    index_s2 = []
+
+    get_cells = load_ws_s2['A2': 'F2']
+    for row in get_cells:
+        for cell in row:
+            index_s2.append(cell.value)
+    print(index_s2)
+
+    rank_s2 = []
+    get_cells = load_ws_s2['A3': 'A19']
+    for row in get_cells:
+        for cell in row:
+            rank_s2.append(cell.value)
+    print(rank_s2)
+
+    tier_s2 = []
+    get_cells = load_ws_s2['B3': 'B19']
+    for row in get_cells:
+        for cell in row:
+            tier_s2.append(cell.value)
+    print(tier_s2)
+
+    id_s2 = []
+    get_cells = load_ws_s2['C3': 'C19']
+    for row in get_cells:
+        for cell in row:
+            id_s2.append(cell.value)
+    print(id_s2)
+
+    tier_score_s2 = []
+    get_cells = load_ws_s2['D3': 'D19']
+    for row in get_cells:
+        for cell in row:
+            tier_score_s2.append(round(cell.value, 2))
+    print(tier_score_s2)
+
+    mmr_rank_s2 = []
+    get_cells = load_ws_s2['E3': 'E19']
+    for row in get_cells:
+        for cell in row:
+            mmr_rank_s2.append(cell.value)
+    print(mmr_rank_s2)
+
+    total_game_s2 = []
+    get_cells = load_ws_s2['F3': 'F19']
+    for row in get_cells:
+        for cell in row:
+            total_game_s2.append(cell.value)
+    print(total_game_s2)
+
+#####################################################
 
     index = []
 
@@ -84,19 +142,27 @@ if __name__ == '__main__':
 
     i = 0
     index = 1
+    index_s2 = 1
     for i in range(len(rank)):
         sql = "INSERT INTO D2_69.table_s3 VALUES(" + '"' + str(index) + '","' + rank[i] + '","' + tier[i] + '","' + id[i] + '","' + str(tier_score[i]) + '","' + str(mmr_rank[i]) + '","' + str(total_game[i]) + '")'
         cursor.execute(sql)
         index = index + 1
+
+    for i in range(len(rank_s2)):
+        sql_s2 = "INSERT INTO D2_69.table_s2 VALUES(" + '"' + str(index_s2) + '","' + rank_s2[i] + '","' + tier_s2[i] + '","' + id_s2[i] + '","' + str(tier_score_s2[i]) + '","' + str(mmr_rank_s2[i]) + '","' + str(total_game_s2[i]) + '")'
+        cursor.execute(sql_s2)
+        index_s2 = index_s2 + 1
+
     sensor_db.commit()
 
-    sql = "SELECT * from D2_69.table_s3"
-    cursor.execute(sql)
-    data_list = cursor.fetchall()
+    #sql = "SELECT * from D2_69.table_s3"
+    #cursor.execute(sql)
+    #data_list = cursor.fetchall()
 
-    for data in data_list:
-        print(data)
+    #for data in data_list:
+    #    print(data)
 
 
 load_wb.close()
+load_wb_s2.close()
 cursor.close()

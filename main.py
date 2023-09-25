@@ -85,12 +85,12 @@ if __name__ == '__main__':
     i = 0
     index = 1
     for i in range(len(rank)):
-        sql = "INSERT INTO D2_69.table VALUES(" + '"' + str(index) + '","' + rank[i] + '","' + tier[i] + '","' + id[i] + '","' + str(tier_score[i]) + '","' + str(mmr_rank[i]) + '","' + str(total_game[i]) + '")'
+        sql = "INSERT INTO D2_69.table_s3 VALUES(" + '"' + str(index) + '","' + rank[i] + '","' + tier[i] + '","' + id[i] + '","' + str(tier_score[i]) + '","' + str(mmr_rank[i]) + '","' + str(total_game[i]) + '")'
         cursor.execute(sql)
         index = index + 1
     sensor_db.commit()
 
-    sql = "SELECT * from D2_69.table"
+    sql = "SELECT * from D2_69.table_s3"
     cursor.execute(sql)
     data_list = cursor.fetchall()
 

@@ -14,7 +14,7 @@ sensor_db = pymysql.connect(
 cursor = sensor_db.cursor()
 
 #sql = "DELETE FROM sensor WHERE _id = 2;"
-sql = "SELECT * FROM D2_69.table"
+sql = "SELECT * FROM D2_69.table_s3"
 
 cursor.execute(sql)
 
@@ -27,28 +27,32 @@ app = Flask(__name__)
 @app.route('/')  # 접속하는 url
 def main():
 
-    sql = "SELECT * from D2_69.table"
+    sql = "SELECT * from D2_69.table_s3"
     cursor.execute(sql)
     data_list = cursor.fetchall()
     print(data_list)
 
-    return render_template('index.html', data_list=data_list, now=datetime.today())
+    now = datetime.now()
+
+    return render_template('index.html', data_list=data_list, now=now.date())
+
 
 @app.route('/next')
 def next():
     name = request.args.get('name')
 
     if name is not None:
-        sql = "SELECT * from D2_69.table where id = " + "'" + name + "'"
+        sql = "SELECT * from D2_69.table_s3 where id = " + "'" + name + "'"
     else:
-        sql = "SELECT * from D2_69.table"
+        sql = "SELECT * from D2_69.table_s3"
 
     cursor.execute(sql)
     data_list = cursor.fetchall()
     print(data_list)
 
+    now = datetime.now()
 
-    return render_template("next.html", data_list=data_list, name=name, now=datetime.today())
+    return render_template("next.html", data_list=data_list, name=name, now=now.date())
 
 
 if __name__ == '__main__':

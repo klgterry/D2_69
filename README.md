@@ -1,1 +1,1 @@
-# D2_69
+# DIABLO2 69 Clan  

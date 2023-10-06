@@ -14,7 +14,7 @@ sensor_db = pymysql.connect(
 cursor = sensor_db.cursor()
 
 #sql = "DELETE FROM sensor WHERE _id = 2;"
-sql = "SELECT * FROM D2_69.table_s3"
+sql = "SELECT * FROM D2_69.table_s3_result"
 
 cursor.execute(sql)
 
@@ -27,7 +27,7 @@ app = Flask(__name__)
 @app.route('/')  # 접속하는 url
 def main():
 
-    sql = "SELECT * from D2_69.table_s3"
+    sql = "SELECT * from D2_69.table_s3_result"
     cursor.execute(sql)
     data_list = cursor.fetchall()
     print(data_list)
@@ -41,7 +41,7 @@ def main():
 def next():
     name = request.args.get('name')
 
-    sql = "SELECT * from D2_69.table_s3 where id = " + "'" + name + "'"
+    sql = "SELECT * from D2_69.table_s3_result where id = " + "'" + name + "'"
 
 
     cursor.execute(sql)
@@ -57,7 +57,7 @@ def next_cur_season_total():
     name = request.args.get('name')
     print(name)
 
-    sql = "SELECT * from D2_69.table_s3"
+    sql = "SELECT * from D2_69.table_cur_s_result"
 
     cursor.execute(sql)
     data_list = cursor.fetchall()
@@ -74,15 +74,26 @@ def next_season2():
     print(season)
     print(name)
 
-    sql = "SELECT * from D2_69.table_s2 where id = " + "'" + name + "'"
+    if season == "season2":
+        sql = "SELECT * from D2_69.table_s2_result where id = " + "'" + name + "'"
+    else:
+        sql = "SELECT * from D2_69.table_s3_result where id = " + "'" + name + "'"
 
     cursor.execute(sql)
     data_list = cursor.fetchall()
 
+    if season == "season2":
+        sql = "SELECT * from D2_69.table_s2_char where id = " + "'" + name + "'"
+    else:
+        sql = "SELECT * from D2_69.table_s3_char where id = " + "'" + name + "'"
+
+    cursor.execute(sql)
+    data_list_char = cursor.fetchall()
+    print(data_list_char)
+
     now = datetime.now()
 
-    return render_template("next_season2.html", data_list=data_list, name=name, now=now.date())
-
+    return render_template("next_season2.html", data_list=data_list, name=name, season=season, data_list_char=data_list_char, now=now.date())
 
 if __name__ == '__main__':
     #app.run(debug=True)

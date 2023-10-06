@@ -34,58 +34,325 @@ if __name__ == '__main__':
 
     load_ws_s2 = load_wb_s2['결과']
 
+    load_wb_s3 = load_workbook("input/시즌3.xlsx", read_only=True, data_only=True)
+    print(load_wb_s3.sheetnames)
+
+    load_ws_s3 = load_wb_s3['결과']
+
 #####################################################
     index_s2 = []
 
-    get_cells = load_ws_s2['A2': 'F2']
+    get_cells = load_ws_s2['A2': 'U2']
     for row in get_cells:
         for cell in row:
             index_s2.append(cell.value)
     print(index_s2)
 
     rank_s2 = []
-    get_cells = load_ws_s2['A3': 'A19']
+    get_cells = load_ws_s2['A3': 'A22']
     for row in get_cells:
         for cell in row:
             rank_s2.append(cell.value)
     print(rank_s2)
 
     tier_s2 = []
-    get_cells = load_ws_s2['B3': 'B19']
+    get_cells = load_ws_s2['B3': 'B22']
     for row in get_cells:
         for cell in row:
             tier_s2.append(cell.value)
     print(tier_s2)
 
     id_s2 = []
-    get_cells = load_ws_s2['C3': 'C19']
+    get_cells = load_ws_s2['C3': 'C22']
     for row in get_cells:
         for cell in row:
             id_s2.append(cell.value)
     print(id_s2)
 
     tier_score_s2 = []
-    get_cells = load_ws_s2['D3': 'D19']
+    get_cells = load_ws_s2['D3': 'D22']
     for row in get_cells:
         for cell in row:
             tier_score_s2.append(round(cell.value, 2))
     print(tier_score_s2)
 
     mmr_rank_s2 = []
-    get_cells = load_ws_s2['E3': 'E19']
+    get_cells = load_ws_s2['E3': 'E22']
     for row in get_cells:
         for cell in row:
             mmr_rank_s2.append(cell.value)
     print(mmr_rank_s2)
 
     total_game_s2 = []
-    get_cells = load_ws_s2['F3': 'F19']
+    get_cells = load_ws_s2['F3': 'F22']
     for row in get_cells:
         for cell in row:
             total_game_s2.append(cell.value)
     print(total_game_s2)
 
+    total_win_s2 = []
+    get_cells = load_ws_s2['G3': 'G22']
+    for row in get_cells:
+        for cell in row:
+            total_win_s2.append(cell.value)
+    print(total_win_s2)
+
+    total_lose_s2 = []
+    get_cells = load_ws_s2['H3': 'H22']
+    for row in get_cells:
+        for cell in row:
+            total_lose_s2.append(cell.value)
+    print(total_lose_s2)
+
+    total_rate_s2 = []
+    get_cells = load_ws_s2['I3': 'I22']
+    for row in get_cells:
+        for cell in row:
+            total_rate_s2.append(round(cell.value*100, 1))
+    print(total_rate_s2)
+
+    druid_win_s2 = []
+    get_cells = load_ws_s2['J3': 'J22']
+    for row in get_cells:
+        for cell in row:
+            druid_win_s2.append(cell.value)
+    print(druid_win_s2)
+
+    druid_lose_s2 = []
+    get_cells = load_ws_s2['K3': 'K22']
+    for row in get_cells:
+        for cell in row:
+            druid_lose_s2.append(cell.value)
+    print(druid_lose_s2)
+
+    druid_rate_s2 = []
+    get_cells = load_ws_s2['L3': 'L22']
+    for row in get_cells:
+        for cell in row:
+            druid_rate_s2.append(round(cell.value*100, 1))
+    print(druid_rate_s2)
+
+    ass_win_s2 = []
+    get_cells = load_ws_s2['M3': 'M22']
+    for row in get_cells:
+        for cell in row:
+            ass_win_s2.append(cell.value)
+    print(ass_win_s2)
+
+    ass_lose_s2 = []
+    get_cells = load_ws_s2['N3': 'N22']
+    for row in get_cells:
+        for cell in row:
+            ass_lose_s2.append(cell.value)
+    print(ass_lose_s2)
+
+    ass_rate_s2 = []
+    get_cells = load_ws_s2['O3': 'O22']
+    for row in get_cells:
+        for cell in row:
+            ass_rate_s2.append(round(cell.value*100, 1))
+    print(ass_rate_s2)
+
+    nec_win_s2 = []
+    get_cells = load_ws_s2['P3': 'P22']
+    for row in get_cells:
+        for cell in row:
+            nec_win_s2.append(cell.value)
+    print(nec_win_s2)
+
+    nec_lose_s2 = []
+    get_cells = load_ws_s2['Q3': 'Q22']
+    for row in get_cells:
+        for cell in row:
+            nec_lose_s2.append(cell.value)
+    print(nec_lose_s2)
+
+    nec_rate_s2 = []
+    get_cells = load_ws_s2['R3': 'R22']
+    for row in get_cells:
+        for cell in row:
+            nec_rate_s2.append(round(cell.value*100, 1))
+    print(nec_rate_s2)
+
+    pala_win_s2 = []
+    get_cells = load_ws_s2['S3': 'S22']
+    for row in get_cells:
+        for cell in row:
+            pala_win_s2.append(cell.value)
+    print(pala_win_s2)
+
+    pala_lose_s2 = []
+    get_cells = load_ws_s2['T3': 'T22']
+    for row in get_cells:
+        for cell in row:
+            pala_lose_s2.append(cell.value)
+    print(pala_lose_s2)
+
+    pala_rate_s2 = []
+    get_cells = load_ws_s2['U3': 'U22']
+    for row in get_cells:
+        for cell in row:
+            pala_rate_s2.append(round(cell.value*100, 1))
+    print(pala_rate_s2)
+
 #####################################################
+
+    index_s3 = []
+
+    get_cells = load_ws_s3['A2': 'F2']
+    for row in get_cells:
+        for cell in row:
+            index_s3.append(cell.value)
+    print(index_s3)
+
+    rank_s3 = []
+    get_cells = load_ws_s3['A3': 'A22']
+    for row in get_cells:
+        for cell in row:
+            rank_s3.append(cell.value)
+    print(rank_s3)
+
+    tier_s3 = []
+    get_cells = load_ws_s3['B3': 'B22']
+    for row in get_cells:
+        for cell in row:
+            tier_s3.append(cell.value)
+    print(tier_s3)
+
+    id_s3 = []
+    get_cells = load_ws_s3['C3': 'C22']
+    for row in get_cells:
+        for cell in row:
+            id_s3.append(cell.value)
+    print(id_s3)
+
+    tier_score_s3 = []
+    get_cells = load_ws_s3['D3': 'D22']
+    for row in get_cells:
+        for cell in row:
+            tier_score_s3.append(round(cell.value, 2))
+    print(tier_score_s3)
+
+    mmr_rank_s3 = []
+    get_cells = load_ws_s3['E3': 'E22']
+    for row in get_cells:
+        for cell in row:
+            mmr_rank_s3.append(cell.value)
+    print(mmr_rank_s3)
+
+    total_game_s3 = []
+    get_cells = load_ws_s3['F3': 'F22']
+    for row in get_cells:
+        for cell in row:
+            total_game_s3.append(cell.value)
+    print(total_game_s3)
+
+    total_win_s3 = []
+    get_cells = load_ws_s3['G3': 'G22']
+    for row in get_cells:
+        for cell in row:
+            total_win_s3.append(cell.value)
+    print(total_win_s3)
+
+    total_lose_s3 = []
+    get_cells = load_ws_s3['H3': 'H22']
+    for row in get_cells:
+        for cell in row:
+            total_lose_s3.append(cell.value)
+    print(total_lose_s3)
+
+    total_rate_s3 = []
+    get_cells = load_ws_s3['I3': 'I22']
+    for row in get_cells:
+        for cell in row:
+            total_rate_s3.append(round(cell.value * 100, 1))
+    print(total_rate_s3)
+
+    druid_win_s3 = []
+    get_cells = load_ws_s3['J3': 'J22']
+    for row in get_cells:
+        for cell in row:
+            druid_win_s3.append(cell.value)
+    print(druid_win_s3)
+
+    druid_lose_s3 = []
+    get_cells = load_ws_s3['K3': 'K22']
+    for row in get_cells:
+        for cell in row:
+            druid_lose_s3.append(cell.value)
+    print(druid_lose_s3)
+
+    druid_rate_s3 = []
+    get_cells = load_ws_s3['L3': 'L22']
+    for row in get_cells:
+        for cell in row:
+            druid_rate_s3.append(round(cell.value * 100, 1))
+    print(druid_rate_s3)
+
+    ass_win_s3 = []
+    get_cells = load_ws_s3['M3': 'M22']
+    for row in get_cells:
+        for cell in row:
+            ass_win_s3.append(cell.value)
+    print(ass_win_s3)
+
+    ass_lose_s3 = []
+    get_cells = load_ws_s3['N3': 'N22']
+    for row in get_cells:
+        for cell in row:
+            ass_lose_s3.append(cell.value)
+    print(ass_lose_s3)
+
+    ass_rate_s3 = []
+    get_cells = load_ws_s3['O3': 'O22']
+    for row in get_cells:
+        for cell in row:
+            ass_rate_s3.append(round(cell.value * 100, 1))
+    print(ass_rate_s3)
+
+    nec_win_s3 = []
+    get_cells = load_ws_s3['P3': 'P22']
+    for row in get_cells:
+        for cell in row:
+            nec_win_s3.append(cell.value)
+    print(nec_win_s3)
+
+    nec_lose_s3 = []
+    get_cells = load_ws_s3['Q3': 'Q22']
+    for row in get_cells:
+        for cell in row:
+            nec_lose_s3.append(cell.value)
+    print(nec_lose_s3)
+
+    nec_rate_s3 = []
+    get_cells = load_ws_s3['R3': 'R22']
+    for row in get_cells:
+        for cell in row:
+            nec_rate_s3.append(round(cell.value * 100, 1))
+    print(nec_rate_s3)
+
+    pala_win_s3 = []
+    get_cells = load_ws_s3['S3': 'S22']
+    for row in get_cells:
+        for cell in row:
+            pala_win_s3.append(cell.value)
+    print(pala_win_s3)
+
+    pala_lose_s3 = []
+    get_cells = load_ws_s3['T3': 'T22']
+    for row in get_cells:
+        for cell in row:
+            pala_lose_s3.append(cell.value)
+    print(pala_lose_s3)
+
+    pala_rate_s3 = []
+    get_cells = load_ws_s3['U3': 'U22']
+    for row in get_cells:
+        for cell in row:
+            pala_rate_s3.append(round(cell.value * 100, 1))
+    print(pala_rate_s3)
+
+    #####################################################
 
     index = []
 
@@ -143,15 +410,173 @@ if __name__ == '__main__':
     i = 0
     index = 1
     index_s2 = 1
+    index_s3 = 1
+
+    sql = "DELETE FROM D2_69.table_cur_s_result"
+    cursor.execute(sql)
+    sql = "DELETE FROM D2_69.table_s2_result"
+    cursor.execute(sql)
+    sql = "DELETE FROM D2_69.table_s3_result"
+    cursor.execute(sql)
+
     for i in range(len(rank)):
-        sql = "INSERT INTO D2_69.table_s3 VALUES(" + '"' + str(index) + '","' + rank[i] + '","' + tier[i] + '","' + id[i] + '","' + str(tier_score[i]) + '","' + str(mmr_rank[i]) + '","' + str(total_game[i]) + '")'
+        sql = "INSERT INTO D2_69.table_cur_s_result VALUES(" + '"' + str(index) + '","' + rank[i] + '","' + tier[i] + '","' + id[i] + '","' + str(tier_score[i]) + '","' + str(mmr_rank[i]) + '","' + str(total_game[i]) + '")'
         cursor.execute(sql)
         index = index + 1
 
     for i in range(len(rank_s2)):
-        sql_s2 = "INSERT INTO D2_69.table_s2 VALUES(" + '"' + str(index_s2) + '","' + rank_s2[i] + '","' + tier_s2[i] + '","' + id_s2[i] + '","' + str(tier_score_s2[i]) + '","' + str(mmr_rank_s2[i]) + '","' + str(total_game_s2[i]) + '")'
+        sql_s2 = ("INSERT INTO D2_69.table_s2_result VALUES(" + '"' + str(index_s2) + '","' +
+                  rank_s2[i] + '","' +
+                  tier_s2[i] + '","' +
+                  id_s2[i] + '","' +
+                  str(tier_score_s2[i]) + '","' +
+                  str(mmr_rank_s2[i]) + '","' +
+                  str(total_game_s2[i]) + '","' +
+                  str(total_win_s2[i]) + '","' +
+                  str(total_lose_s2[i]) + '","' +
+                  str(total_rate_s2[i]) + "%" + '","' +
+                  str(druid_win_s2[i]) + '","' +
+                  str(druid_lose_s2[i]) + '","' +
+                  str(druid_rate_s2[i]) + "%" + '","' +
+                  str(ass_win_s2[i]) + '","' +
+                  str(ass_lose_s2[i]) + '","' +
+                  str(ass_rate_s2[i]) + "%" + '","' +
+                  str(nec_win_s2[i]) + '","' +
+                  str(nec_lose_s2[i]) + '","' +
+                  str(nec_rate_s2[i]) + "%" + '","' +
+                  str(pala_win_s2[i]) + '","' +
+                  str(pala_lose_s2[i]) + '","' +
+                  str(pala_rate_s2[i]) + "%" + '")')
         cursor.execute(sql_s2)
         index_s2 = index_s2 + 1
+
+    for i in range(len(rank_s3)):
+        sql_s3 = ("INSERT INTO D2_69.table_s3_result VALUES(" + '"' + str(index_s3) + '","' +
+                  rank_s3[i] + '","' +
+                  tier_s3[i] + '","' +
+                  id_s3[i] + '","' +
+                  str(tier_score_s3[i]) + '","' +
+                  str(mmr_rank_s3[i]) + '","' +
+                  str(total_game_s3[i]) + '","' +
+                  str(total_win_s3[i]) + '","' +
+                  str(total_lose_s3[i]) + '","' +
+                  str(total_rate_s3[i]) + "%" + '","' +
+                  str(druid_win_s3[i]) + '","' +
+                  str(druid_lose_s3[i]) + '","' +
+                  str(druid_rate_s3[i]) + "%" + '","' +
+                  str(ass_win_s3[i]) + '","' +
+                  str(ass_lose_s3[i]) + '","' +
+                  str(ass_rate_s3[i]) + "%" + '","' +
+                  str(nec_win_s3[i]) + '","' +
+                  str(nec_lose_s3[i]) + '","' +
+                  str(nec_rate_s3[i]) + "%" + '","' +
+                  str(pala_win_s3[i]) + '","' +
+                  str(pala_lose_s3[i]) + '","' +
+                  str(pala_rate_s3[i]) + "%" + '")')
+        cursor.execute(sql_s3)
+        index_s3 = index_s3 + 1
+
+    sensor_db.commit()
+
+    #####################################################
+    load_ws_s2 = load_wb_s2['주캐릭']
+
+    id_s2 = []
+
+    get_cells = load_ws_s2['A3': 'A39']
+    for row in get_cells:
+        for cell in row:
+            id_s2.append(cell.value)
+    print(id_s2)
+
+    dru_s2 = []
+
+    get_cells = load_ws_s2['B3': 'B39']
+    for row in get_cells:
+        for cell in row:
+            dru_s2.append(cell.value)
+    print(dru_s2)
+
+    ass_s2 = []
+
+    get_cells = load_ws_s2['C3': 'C39']
+    for row in get_cells:
+        for cell in row:
+            ass_s2.append(cell.value)
+    print(ass_s2)
+
+    nec_s2 = []
+
+    get_cells = load_ws_s2['D3': 'D39']
+    for row in get_cells:
+        for cell in row:
+            nec_s2.append(cell.value)
+    print(nec_s2)
+
+    sm_s2 = []
+
+    get_cells = load_ws_s2['E3': 'E39']
+    for row in get_cells:
+        for cell in row:
+            sm_s2.append(cell.value)
+    print(sm_s2)
+
+    #####################################################
+    load_ws_s3 = load_wb_s3['주캐릭']
+
+    id_s3 = []
+
+    get_cells = load_ws_s3['A3': 'A39']
+    for row in get_cells:
+        for cell in row:
+            id_s3.append(cell.value)
+    print(id_s3)
+
+    dru_s3 = []
+
+    get_cells = load_ws_s3['B3': 'B39']
+    for row in get_cells:
+        for cell in row:
+            dru_s3.append(cell.value)
+    print(dru_s3)
+
+    ass_s3 = []
+
+    get_cells = load_ws_s3['C3': 'C39']
+    for row in get_cells:
+        for cell in row:
+            ass_s3.append(cell.value)
+    print(ass_s3)
+
+    nec_s3 = []
+
+    get_cells = load_ws_s3['D3': 'D39']
+    for row in get_cells:
+        for cell in row:
+            nec_s3.append(cell.value)
+    print(nec_s3)
+
+    sm_s3 = []
+
+    get_cells = load_ws_s3['E3': 'E39']
+    for row in get_cells:
+        for cell in row:
+            sm_s3.append(cell.value)
+    print(sm_s3)
+
+    sql = "DELETE FROM D2_69.table_s2_char"
+    cursor.execute(sql)
+    sql = "DELETE FROM D2_69.table_s3_char"
+    cursor.execute(sql)
+    for i in range(len(id_s2)):
+        sql_s2 = "INSERT INTO D2_69.table_s2_char VALUES(" + '"' + id_s2[i] + '","' + dru_s2[i] + '","' + ass_s2[i] + '","' + nec_s2[i] + '","' + sm_s2[i] + '")'
+        cursor.execute(sql_s2)
+
+    for i in range(len(id_s3)):
+        sql_s3 = "INSERT INTO D2_69.table_s3_char VALUES(" + '"' + id_s3[i] + '","' + dru_s3[i] + '","' + ass_s3[i] + '","' + nec_s3[i] + '","' + sm_s3[i] + '")'
+        cursor.execute(sql_s3)
+
+
 
     sensor_db.commit()
 
@@ -165,4 +590,5 @@ if __name__ == '__main__':
 
 load_wb.close()
 load_wb_s2.close()
+load_wb_s3.close()
 cursor.close()

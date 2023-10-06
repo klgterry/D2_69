@@ -19,43 +19,68 @@
 	<div style="text-align:center">
 		<H1 style="color:white;"> D2_69.GG</H1>
 		<p style="color:white;">{{now}}</p>
-		<img src="../static/웹_{{name}}.jpg" width="200">
+		<img src="../static/players/웹_{{name}}.jpg" width="400">
 		<br>
 		<br>
 		{% if (name) %}
 			<p style="color:white;">{{name}}</p>
 		{% else %}
-			<p style="color:white;">현재 시즌 전체 순위</p>
+			<p style="color:white;">현재 Season 전체 순위</p>
 		{% endif %}
 
 		<form action="/next_season2">
 			<select id="season" name="season">
-				<option value="">시즌을 선택하세요</option>
-				<option value="season2">시즌2</option>
-				<option value="season3">시즌3</option>
+				<option value="">Season을 선택하세요</option>
+				<option value="season2">Season2</option>
+				<option value="season3">Season3</option>
 			</select>
 			<button onclick="location.href='/next_season2'">검색</button>
 			<input type="hidden" name="name" value={{name}}>
 		</form>
 		<br>
 		<form action="/next_cur_season_total">
-			<button onclick="location.href='/next_cur_season_total'">현재시즌 전체 순위표</button>
+			<button onclick="location.href='/next_cur_season_total'">Season3 전체 순위표</button>
 			<input type="hidden" name="name" value={{name}}>
     	</form>
-		<br>
 		<button onclick="location.href='/'">메인 화면 이동</button><form action="/">
+		<p style="font-size:40px;color:white;">{{season}}</p>
+			{% for i in data_list_char %}
+				<tr>
+					{% if i[1] == 'X' %}
+						<img src="../static/char/드루_흑백.jpg" width="100">
+					{% else %}
+						<img src="../static/char/드루_컬러.jpg" width="100">
+					{% endif %}
+
+					{% if i[2] == 'X' %}
+						<img src="../static/char/어쌔_흑백.jpg" width="100">
+					{% else %}
+						<img src="../static/char/어쌔_컬러.jpg" width="100">
+					{% endif %}
+
+					{% if i[3] == 'X' %}
+						<img src="../static/char/네크_흑백.jpg" width="100">
+					{% else %}
+						<img src="../static/char/네크_칼라.jpg" width="100">
+					{% endif %}
+
+					{% if i[4] == 'X' %}
+						<img src="../static/char/팔라딘_흑백.jpg" width="100">
+					{% else %}
+						<img src="../static/char/팔라딘_칼라.jpg" width="100">
+					{% endif %}
+				</tr>
+			{% endfor %}
 	</div>
 
 
 </head>
 <body>
 
-<br>
-<br>
 
-	<table class="table table-hover table-striped text-center" style=" width: 50%; border: 1px  solid #111114;;margin-left:auto;margin-right:auto;color:white;">
+	<table class="table table-hover table-striped text-center" style="width: 100%; border: 10px  solid #111114;;margin-left:auto;margin-right:auto;color:white;">
 		<thead>
-			<tr>
+			<tr style="font-size:10px">
 				<center>
 				<th>전체 순위</th>
 				<th>티어</th>
@@ -63,6 +88,21 @@
 				<th>티어점수</th>
 				<th>MMR순위</th>
 				<th>총 게임수</th>
+				<th>Total(Win)</th>
+				<th>Total(Lose)</th>
+				<th>Total(Rate)</th>
+				<th>Druid(Win)</th>
+				<th>Druid(Lose)</th>
+				<th>Druid(Rate)</th>
+				<th>Assassin(Win)</th>
+				<th>Assassin(Lose)</th>
+				<th>Assassin(Rate)</th>
+				<th>Necromancer(Win)</th>
+				<th>Necromancer(Lose)</th>
+				<th>Necromancer(Rate)</th>
+				<th>Paladin(Win)</th>
+				<th>Paladin(Lose)</th>
+				<th>Paladin(Rate)</th>
 				</center>
 			</tr>
 		</thead>
@@ -73,8 +113,24 @@
 				<td><center>{{ i[2] }}</center></td>
 				<td><center>{{ i[3] }}</center></td>
 				<td><center>{{ i[4] }}</center></td>
-				<td><center>{{ i[5] }}</center></td>]
+				<td><center>{{ i[5] }}</center></td>
 				<td><center>{{ i[6] }}</center></td>
+				<td><center>{{ i[7] }}</center></td>
+				<td><center>{{ i[8] }}</center></td>
+				<td><center>{{ i[9] }}</center></td>
+				<td><center>{{ i[10] }}</center></td>
+				<td><center>{{ i[11] }}</center></td>
+				<td><center>{{ i[12] }}</center></td>
+				<td><center>{{ i[13] }}</center></td>
+				<td><center>{{ i[14] }}</center></td>
+				<td><center>{{ i[15] }}</center></td>
+				<td><center>{{ i[16] }}</center></td>
+				<td><center>{{ i[17] }}</center></td>
+				<td><center>{{ i[18] }}</center></td>
+				<td><center>{{ i[19] }}</center></td>
+				<td><center>{{ i[20] }}</center></td>
+				<td><center>{{ i[21] }}</center></td>
+				<td><center>{{ i[22] }}</center></td>
 			</tr>
 			{% endfor %}
 		</tbody>

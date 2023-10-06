@@ -19,27 +19,27 @@
 	<div style="text-align:center">
 		<H1 style="color:white;"> D2_69.GG</H1>
 		<p style="color:white;">{{now}}</p>
-		<img src="../static/웹_{{name}}.jpg" width="200">
+		<img src="../static/players/웹_{{name}}.jpg" width="400">
 		<br>
 		<br>
 		{% if (name) %}
 			<p style="color:white;">{{name}}</p>
 		{% else %}
-			<p style="color:white;">현재 시즌 전체 순위</p>
+			<p style="color:white;">현재 Season 전체 순위</p>
 		{% endif %}
 
 		<form action="/next_season2">
 			<select id="season" name="season">
-				<option value="">시즌을 선택하세요</option>
-				<option value="season2">시즌2</option>
-				<option value="season3">시즌3</option>
+				<option value="">Season을 선택하세요</option>
+				<option value="season2">Season2</option>
+				<option value="season3">Season3</option>
 			</select>
 			<button onclick="location.href='/next_season2'">검색</button>
 			<input type="hidden" name="name" value={{name}}>
 		</form>
 		<br>
 		<form action="/next_cur_season_total">
-			<button onclick="location.href='/next_cur_season_total'">현재시즌 전체 순위표</button>
+			<button onclick="location.href='/next_cur_season_total'">Season3 전체 순위표</button>
 			<input type="hidden" name="name" value={{name}}>
     	</form>
 		<br>
@@ -53,7 +53,7 @@
 <br>
 <br>
 
-	<table class="table table-hover table-striped text-center" style=" width: 50%; border: 1px  solid #111114;;margin-left:auto;margin-right:auto;color:white;">
+	<!--<table class="table table-hover table-striped text-center" style=" width: 50%; border: 1px  solid #111114;;margin-left:auto;margin-right:auto;color:white;">
 		<thead>
 			<tr>
 				<center>
@@ -78,6 +78,6 @@
 			</tr>
 			{% endfor %}
 		</tbody>
-	</table>
+	</table>-->
 </body>
 </html>

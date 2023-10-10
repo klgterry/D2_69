@@ -21,7 +21,6 @@
 		<p style="color:white;">{{now}}</p>
 		<img src="../static/players/웹_{{name}}.jpg" width="400">
 		<br>
-		<br>
 		{% if (name) %}
 			<p style="color:white;">{{name}}</p>
 		{% else %}
@@ -37,12 +36,10 @@
 			<button onclick="location.href='/next_season2'">검색</button>
 			<input type="hidden" name="name" value={{name}}>
 		</form>
-		<br>
 		<form action="/next_cur_season_total">
 			<button onclick="location.href='/next_cur_season_total'">Season3 전체 순위표</button>
 			<input type="hidden" name="name" value={{name}}>
     	</form>
-		<br>
 		<button onclick="location.href='/'">메인 화면 이동</button><form action="/">
 	</div>
 

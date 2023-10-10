@@ -58,6 +58,7 @@ def next():
 
     return render_template("next.html", data_list=data_list, name=name, name1=name1, now=now.date())
 
+
 @app.route('/next_cur_season_total')
 def next_cur_season_total():
     name = request.args.get('name')
@@ -73,6 +74,7 @@ def next_cur_season_total():
 
     return render_template("next_cur_season_total.html", data_list=data_list, name=name, now=now.date())
 
+
 @app.route('/next_season2')
 def next_season2():
     season = request.args.get('season')
@@ -80,6 +82,7 @@ def next_season2():
     print(season)
     print(name)
     player_name = ""
+    name1 = ""
 
     if name == "린스":
         player_name = "lince"

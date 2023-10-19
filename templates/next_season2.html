@@ -19,7 +19,6 @@
 	<div style="text-align:center">
 		<H1 style="color:white;"> D2_69.GG</H1>
 		<p style="color:white;">{{now}}</p>
-		<img src="../static/players/웹_{{name}}.jpg" width="200">
 		<br>
 		{% if (name) %}
 			<img src="../static/players/웹_{{name1}}.jpg" width="400">
@@ -32,6 +31,7 @@
 		<form action="/next_season2">
 			<select id="season" name="season">
 				<option value="">Season을 선택하세요</option>
+				<option value="seasonAll">All Season</option>
 				<option value="season2">Season2</option>
 				<option value="season3">Season3</option>
 			</select>
@@ -45,205 +45,256 @@
 		<button onclick="location.href='/'">메인 화면 이동</button><form action="/">
 		<a style="font-size:40px;color:white;">{{season}}</a>
 		<br>
-		<a style="font-size:20px;color:white;">==== Tier ====</a>
-		<br>
-		{% for i in data_list %}
-			{% if i[2] == '다이아' %}
-						<img src="../static/tier/다이아.png" width="100">
-			{% endif %}
+		{% if (season) == 'seasonAll' %}
+			<a style="font-size:20px;color:white;">==== 전체 시즌 ====</a>
+		{% else %}
+			<a style="font-size:20px;color:white;">==== Tier ====</a>
+			<br>
+			{% for i in data_list %}
+				{% if i[2] == '다이아' %}
+							<img src="../static/tier/다이아.png" width="100">
+				{% endif %}
 
-			{% if i[2] == '플레티넘' %}
-						<img src="../static/tier/플레티늄.png" width="100">
-			{% endif %}
+				{% if i[2] == '플레티넘' %}
+							<img src="../static/tier/플레티늄.png" width="100">
+				{% endif %}
 
-			{% if i[2] == '골드' %}
-						<img src="../static/tier/골드.png" width="100">
-			{% endif %}
+				{% if i[2] == '골드' %}
+							<img src="../static/tier/골드.png" width="100">
+				{% endif %}
 
-			{% if i[2] == '실버' %}
-						<img src="../static/tier/실버.png" width="100">
-			{% endif %}
+				{% if i[2] == '실버' %}
+							<img src="../static/tier/실버.png" width="100">
+				{% endif %}
 
-			{% if i[2] == '브론즈' %}
-						<img src="../static/tier/브론즈.png" width="100">
-			{% endif %}
+				{% if i[2] == '브론즈' %}
+							<img src="../static/tier/브론즈.png" width="100">
+				{% endif %}
 
-			{% if i[2] == '아이언' %}
-						<img src="../static/tier/아이언.png" width="100">
-			{% endif %}
-		{% endfor %}
-		<br>
-		<a style="font-size:20px;color:white;">======= Main, Sub Char =======</a>
-		<br>
-			{% for i in data_list_char %}
-				<tr>
-					{% if i[1] == 'X' %}
-						<img src="../static/char/드루_흑백.jpg" width="70">
-					{% else %}
-						<img src="../static/char/드루_컬러.jpg" width="70">
-					{% endif %}
-
-					{% if i[2] == 'X' %}
-						<img src="../static/char/어쌔_흑백.jpg" width="70">
-					{% else %}
-						<img src="../static/char/어쌔_컬러.jpg" width="70">
-					{% endif %}
-
-					{% if i[3] == 'X' %}
-						<img src="../static/char/네크_흑백.jpg" width="70">
-					{% else %}
-						<img src="../static/char/네크_칼라.jpg" width="70">
-					{% endif %}
-
-					{% if i[4] == 'X' %}
-						<img src="../static/char/팔라딘_흑백.jpg" width="70">
-					{% else %}
-						<img src="../static/char/팔라딘_칼라.jpg" width="70">
-					{% endif %}
-				</tr>
+				{% if i[2] == '아이언' %}
+							<img src="../static/tier/아이언.png" width="100">
+				{% endif %}
 			{% endfor %}
 			<br>
+			<a style="font-size:20px;color:white;">======= Main, Sub Char =======</a>
 			<br>
-			<a style="font-size:20px;color:white;">==== Detailed Results ====</a>
+				{% for i in data_list_char %}
+					<tr>
+						{% if i[1] == 'X' %}
+							<img src="../static/char/드루_흑백.jpg" width="70">
+						{% else %}
+							<img src="../static/char/드루_컬러.jpg" width="70">
+						{% endif %}
+
+						{% if i[2] == 'X' %}
+							<img src="../static/char/어쌔_흑백.jpg" width="70">
+						{% else %}
+							<img src="../static/char/어쌔_컬러.jpg" width="70">
+						{% endif %}
+
+						{% if i[3] == 'X' %}
+							<img src="../static/char/네크_흑백.jpg" width="70">
+						{% else %}
+							<img src="../static/char/네크_칼라.jpg" width="70">
+						{% endif %}
+
+						{% if i[4] == 'X' %}
+							<img src="../static/char/팔라딘_흑백.jpg" width="70">
+						{% else %}
+							<img src="../static/char/팔라딘_칼라.jpg" width="70">
+						{% endif %}
+					</tr>
+				{% endfor %}
+				<br>
+				<br>
+				<a style="font-size:20px;color:white;">==== Detailed Results ====</a>
+		{% endif %}
 	</div>
-
-
 </head>
 <body>
+	{% if (season) == 'seasonAll' %}
+		<table class="table table-hover table-striped text-center" style="width: 100%; border: 10px  solid #111114;;margin-left:auto;margin-right:auto;color:white;">
+			<thead>
+				<tr style="font-size:10px">
+					<center>
+					<th>총 게임수</th>
+					<th>Total(Win)</th>
+					<th>Total(Lose)</th>
+					<th>Total(Rate)</th>
+					<th>Druid(Win)</th>
+					<th>Druid(Lose)</th>
+					<th>Druid(Rate)</th>
+					<th>Assassin(Win)</th>
+					<th>Assassin(Lose)</th>
+					<th>Assassin(Rate)</th>
+					<th>Necromancer(Win)</th>
+					<th>Necromancer(Lose)</th>
+					<th>Necromancer(Rate)</th>
+					<th>Paladin(Win)</th>
+					<th>Paladin(Lose)</th>
+					<th>Paladin(Rate)</th>
+					</center>
+				</tr>
+			</thead>
+			<tbody>
+				{% for i in data_list %}
+				<tr>
+					<td><center>{{ i[0] }}</center></td>
+					<td><center>{{ i[1] }}</center></td>
+					<td><center>{{ i[2] }}</center></td>
+					<td><center>{{ i[3] }}</center></td>
+					<td><center>{{ i[4] }}</center></td>
+					<td><center>{{ i[5] }}</center></td>
+					<td><center>{{ i[6] }}</center></td>
+					<td><center>{{ i[7] }}</center></td>
+					<td><center>{{ i[8] }}</center></td>
+					<td><center>{{ i[9] }}</center></td>
+					<td><center>{{ i[10] }}</center></td>
+					<td><center>{{ i[11] }}</center></td>
+					<td><center>{{ i[12] }}</center></td>
+					<td><center>{{ i[13] }}</center></td>
+					<td><center>{{ i[14] }}</center></td>
+					<td><center>{{ i[15] }}</center></td>
+					<td><center>{{ i[16] }}</center></td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% else %}
+		<table class="table table-hover table-striped text-center" style="width: 100%; border: 10px  solid #111114;;margin-left:auto;margin-right:auto;color:white;">
+			<thead>
+				<tr style="font-size:10px">
+					<center>
+					<th>전체 순위</th>
+					<th>티어</th>
+					<th>아이디</th>
+					<th>티어점수</th>
+					<th>MMR순위</th>
+					<th>총 게임수</th>
+					<th>Total(Win)</th>
+					<th>Total(Lose)</th>
+					<th>Total(Rate)</th>
+					<th>Druid(Win)</th>
+					<th>Druid(Lose)</th>
+					<th>Druid(Rate)</th>
+					<th>Assassin(Win)</th>
+					<th>Assassin(Lose)</th>
+					<th>Assassin(Rate)</th>
+					<th>Necromancer(Win)</th>
+					<th>Necromancer(Lose)</th>
+					<th>Necromancer(Rate)</th>
+					<th>Paladin(Win)</th>
+					<th>Paladin(Lose)</th>
+					<th>Paladin(Rate)</th>
+					</center>
+				</tr>
+			</thead>
+			<tbody>
+				{% for i in data_list %}
+				<tr>
+					<td><center>{{ i[1] }}</center></td>
+					<td><center>{{ i[2] }}</center></td>
+					<td><center>{{ i[3] }}</center></td>
+					<td><center>{{ i[4] }}</center></td>
+					<td><center>{{ i[5] }}</center></td>
+					<td><center>{{ i[6] }}</center></td>
+					<td><center>{{ i[7] }}</center></td>
+					<td><center>{{ i[8] }}</center></td>
+					<td><center>{{ i[9] }}</center></td>
+					<td><center>{{ i[10] }}</center></td>
+					<td><center>{{ i[11] }}</center></td>
+					<td><center>{{ i[12] }}</center></td>
+					<td><center>{{ i[13] }}</center></td>
+					<td><center>{{ i[14] }}</center></td>
+					<td><center>{{ i[15] }}</center></td>
+					<td><center>{{ i[16] }}</center></td>
+					<td><center>{{ i[17] }}</center></td>
+					<td><center>{{ i[18] }}</center></td>
+					<td><center>{{ i[19] }}</center></td>
+					<td><center>{{ i[20] }}</center></td>
+					<td><center>{{ i[21] }}</center></td>
+					<td><center>{{ i[22] }}</center></td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<br>
+		<div style="text-align:center">
+			<a style="font-size:20px;color:white;">==== Duo win rate ====</a>
+		</div>
+		<table class="table table-hover table-striped text-center" style="width: 50%; border: 10px  solid #111114;;margin-left:auto;margin-right:auto;color:white;">
+			<thead>
+				<tr style="font-size:10px">
+					<center>
+					<th>Player1</th>
+					<th>Player2</th>
+					<th>승</th>
+					<th>패</th>
+					<th>승률</th>
+					</center>
+				</tr>
+			</thead>
+			<tbody>
+				{% for i in data_list_duo_win_rate %}
+				<tr>
+					<td><center>{{ i[0] }}</center></td>
+					<td><center>{{ i[1] }}</center></td>
+					<td><center>{{ i[2] }}</center></td>
+					<td><center>{{ i[3] }}</center></td>
+					<td><center>{{ i[4] }}</center></td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<br>
+		<div style="text-align:center">
+			<a style="font-size:20px;color:white;">==== Relative record ====</a>
+		</div>
+		<table class="table table-hover table-striped text-center" style="width: 50%; border: 10px  solid #111114;;margin-left:auto;margin-right:auto;color:white;">
+			<thead>
+				<tr style="font-size:10px">
+					<center>
+					<th>Player1</th>
+					<th>vs</th>
+					<th>vs</th>
+					<th>Player2</th>
+					</center>
+				</tr>
+			</thead>
+			<tbody>
+				{% for i in data_list_relative_record %}
+				<tr>
+					<td><center>{{ i[0] }}</center></td>
+					<td><center>{{ i[1] }}</center></td>
+					<td><center>{{ i[2] }}</center></td>
+					<td><center>{{ i[3] }}</center></td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<br>
+		<div style="text-align:center">
+			<a style="font-size:20px;color:white;">==== Win Lose straight ====</a>
+		</div>
+		<table class="table table-hover table-striped text-center" style="width: 50%; border: 10px  solid #111114;;margin-left:auto;margin-right:auto;color:white;">
+			<thead>
+				<tr style="font-size:10px">
+					<center>
+					<th>Win</th>
+					<th>Lose</th>
+					</center>
+				</tr>
+			</thead>
+			<tbody>
+				{% for i in data_list_win_lose_straight %}
+				<tr>
+					<td><center>{{ i[0] }}</center></td>
+					<td><center>{{ i[1] }}</center></td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% endif %}
 
-
-	<table class="table table-hover table-striped text-center" style="width: 100%; border: 10px  solid #111114;;margin-left:auto;margin-right:auto;color:white;">
-		<thead>
-			<tr style="font-size:10px">
-				<center>
-				<th>전체 순위</th>
-				<th>티어</th>
-				<th>아이디</th>
-				<th>티어점수</th>
-				<th>MMR순위</th>
-				<th>총 게임수</th>
-				<th>Total(Win)</th>
-				<th>Total(Lose)</th>
-				<th>Total(Rate)</th>
-				<th>Druid(Win)</th>
-				<th>Druid(Lose)</th>
-				<th>Druid(Rate)</th>
-				<th>Assassin(Win)</th>
-				<th>Assassin(Lose)</th>
-				<th>Assassin(Rate)</th>
-				<th>Necromancer(Win)</th>
-				<th>Necromancer(Lose)</th>
-				<th>Necromancer(Rate)</th>
-				<th>Paladin(Win)</th>
-				<th>Paladin(Lose)</th>
-				<th>Paladin(Rate)</th>
-				</center>
-			</tr>
-		</thead>
-		<tbody>
-			{% for i in data_list %}
-			<tr>
-				<td><center>{{ i[1] }}</center></td>
-				<td><center>{{ i[2] }}</center></td>
-				<td><center>{{ i[3] }}</center></td>
-				<td><center>{{ i[4] }}</center></td>
-				<td><center>{{ i[5] }}</center></td>
-				<td><center>{{ i[6] }}</center></td>
-				<td><center>{{ i[7] }}</center></td>
-				<td><center>{{ i[8] }}</center></td>
-				<td><center>{{ i[9] }}</center></td>
-				<td><center>{{ i[10] }}</center></td>
-				<td><center>{{ i[11] }}</center></td>
-				<td><center>{{ i[12] }}</center></td>
-				<td><center>{{ i[13] }}</center></td>
-				<td><center>{{ i[14] }}</center></td>
-				<td><center>{{ i[15] }}</center></td>
-				<td><center>{{ i[16] }}</center></td>
-				<td><center>{{ i[17] }}</center></td>
-				<td><center>{{ i[18] }}</center></td>
-				<td><center>{{ i[19] }}</center></td>
-				<td><center>{{ i[20] }}</center></td>
-				<td><center>{{ i[21] }}</center></td>
-				<td><center>{{ i[22] }}</center></td>
-			</tr>
-			{% endfor %}
-		</tbody>
-	</table>
-	<br>
-	<div style="text-align:center">
-		<a style="font-size:20px;color:white;">==== Duo win rate ====</a>
-	</div>
-	<table class="table table-hover table-striped text-center" style="width: 50%; border: 10px  solid #111114;;margin-left:auto;margin-right:auto;color:white;">
-		<thead>
-			<tr style="font-size:10px">
-				<center>
-				<th>Player1</th>
-				<th>Player2</th>
-				<th>승</th>
-				<th>패</th>
-				<th>승률</th>
-				</center>
-			</tr>
-		</thead>
-		<tbody>
-			{% for i in data_list_duo_win_rate %}
-			<tr>
-				<td><center>{{ i[0] }}</center></td>
-				<td><center>{{ i[1] }}</center></td>
-				<td><center>{{ i[2] }}</center></td>
-				<td><center>{{ i[3] }}</center></td>
-				<td><center>{{ i[4] }}</center></td>
-			</tr>
-			{% endfor %}
-		</tbody>
-	</table>
-	<br>
-	<div style="text-align:center">
-		<a style="font-size:20px;color:white;">==== Relative record ====</a>
-	</div>
-	<table class="table table-hover table-striped text-center" style="width: 50%; border: 10px  solid #111114;;margin-left:auto;margin-right:auto;color:white;">
-		<thead>
-			<tr style="font-size:10px">
-				<center>
-				<th>Player1</th>
-				<th>vs</th>
-				<th>vs</th>
-				<th>Player2</th>
-				</center>
-			</tr>
-		</thead>
-		<tbody>
-			{% for i in data_list_relative_record %}
-			<tr>
-				<td><center>{{ i[0] }}</center></td>
-				<td><center>{{ i[1] }}</center></td>
-				<td><center>{{ i[2] }}</center></td>
-				<td><center>{{ i[3] }}</center></td>
-			</tr>
-			{% endfor %}
-		</tbody>
-	</table>
-	<br>
-	<div style="text-align:center">
-		<a style="font-size:20px;color:white;">==== Win Lose straight ====</a>
-	</div>
-	<table class="table table-hover table-striped text-center" style="width: 50%; border: 10px  solid #111114;;margin-left:auto;margin-right:auto;color:white;">
-		<thead>
-			<tr style="font-size:10px">
-				<center>
-				<th>Win</th>
-				<th>Lose</th>
-				</center>
-			</tr>
-		</thead>
-		<tbody>
-			{% for i in data_list_win_lose_straight %}
-			<tr>
-				<td><center>{{ i[0] }}</center></td>
-				<td><center>{{ i[1] }}</center></td>
-			</tr>
-			{% endfor %}
-		</tbody>
-	</table>
 </body>
 </html>

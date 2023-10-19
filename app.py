@@ -101,7 +101,10 @@ def next_season2():
     elif name == "넘버":
         player_name = "number"
     elif name == "용이":
-        player_name = "yongi"
+        if season == "season2":
+            player_name = "yongi"
+        else:
+            player_name = ""
     elif name == "용갈":
         player_name = "yongal"
     elif name == "울프":
@@ -113,21 +116,39 @@ def next_season2():
     elif name == "블핑":
         player_name = "blackpink"
     elif name == "도건":
-        player_name = "dogeon"
+        if season == "season2":
+            player_name = "dogeon"
+        else:
+            player_name = ""
     elif name == "살수":
         player_name = "salsu"
     elif name == "참치":
         player_name = "chamchi"
     elif name == "르기":
-        player_name = "rgi"
+        if season == "season2":
+            player_name = ""
+        else:
+            player_name = "rgi"
     elif name == "플토":
-        player_name = "pluto"
+        if season == "season2":
+            player_name = ""
+        else:
+            player_name = "pluto"
     elif name == "필찌":
-        player_name = "pilzzi"
+        if season == "season2":
+            player_name = ""
+        else:
+            player_name = "pilzzi"
     elif name == "솔":
-        player_name = "sol"
+        if season == "season2":
+            player_name = ""
+        else:
+            player_name = "sol"
     elif name == "라위":
-        player_name = "lawe"
+        if season == "season2":
+            player_name = ""
+        else:
+            player_name = "lawe"
     else:
         player_name = ""
 
@@ -135,25 +156,94 @@ def next_season2():
 
     if season == "season2":
         sql = "SELECT * from D2_69.table_s2_result where id = " + "'" + name + "'"
-    else:
+
+        cursor.execute(sql)
+        data_list = cursor.fetchall()
+    elif season == "season3":
         sql = "SELECT * from D2_69.table_s3_result where id = " + "'" + name + "'"
 
-    cursor.execute(sql)
-    data_list = cursor.fetchall()
+        cursor.execute(sql)
+        data_list = cursor.fetchall()
+    else:
+        data_list_temp = []
+        sql = "SELECT * from D2_69.table_s2_result where id = " + "'" + name + "'"
+
+        cursor.execute(sql)
+        data_list_s2 = cursor.fetchall()
+
+        sql = "SELECT * from D2_69.table_s3_result where id = " + "'" + name + "'"
+
+        cursor.execute(sql)
+        data_list_s3 = cursor.fetchall()
+
+        print(data_list_s2)
+        print(data_list_s3)
+
+        for i in data_list_s2:
+            total_game = i[6]
+            total_win = i[7]
+            total_lose = i[8]
+            dru_win = i[10]
+            dru_lose = i[11]
+            ass_win = i[13]
+            ass_lose = i[14]
+            nec_win = i[16]
+            nec_lose = i[17]
+            pala_win = i[19]
+            pala_lose = i[20]
+
+        for i in data_list_s3:
+            total_game = int(total_game) + int(i[6])
+            total_win = int(total_win) + int(i[7])
+            total_lose = int(total_lose) + int(i[8])
+            total_win_rate = str(round(total_win/total_game * 100, 2)) + "%"
+            dru_win = int(dru_win) + int(i[10])
+            dru_lose = int(dru_lose) + int(i[11])
+            dru_win_rate = str(round(dru_win / (dru_win + dru_lose) * 100, 2)) + "%"
+            ass_win = int(ass_win) + int(i[13])
+            ass_lose = int(ass_lose) + int(i[14])
+            ass_win_rate = str(round(ass_win / (ass_win + ass_lose) * 100, 2)) + "%"
+            nec_win = int(nec_win) + int(i[16])
+            nec_lose = int(nec_lose) + int(i[17])
+            nec_win_rate = str(round(nec_win / (nec_win + nec_lose) * 100, 2)) + "%"
+            pala_win = int(pala_win) + int(i[19])
+            pala_lose = int(pala_lose) + int(i[20])
+            pala_win_rate = str(round(pala_win / (pala_win + pala_lose) * 100, 2)) + "%"
+
+        data_list = ((total_game, total_win, total_lose, total_win_rate, dru_win, dru_lose, dru_win_rate, ass_win, ass_lose, ass_win_rate, nec_win, nec_lose, nec_win_rate, pala_win, pala_lose, pala_win_rate),)
+        #data_list_temp1 = []
+        #data_list_temp1.append([])
+        #data_list_temp1[0].append(tuple(data_list_temp))
+
+        #print(type(data_list_temp1))
+
+        #data_list = tuple(data_list_temp1)
+        #data_list = data_list_s2;
+
+    print(type(data_list))
+    print(data_list)
+
 
     if season == "season2":
         sql = "SELECT * from D2_69.table_s2_char where id = " + "'" + name + "'"
-    else:
+
+        cursor.execute(sql)
+        data_list_char = cursor.fetchall()
+    elif season == "season3":
         sql = "SELECT * from D2_69.table_s3_char where id = " + "'" + name + "'"
 
-    cursor.execute(sql)
-    data_list_char = cursor.fetchall()
-    print(data_list_char)
+        cursor.execute(sql)
+        data_list_char = cursor.fetchall()
+    else:
+        #sql = "SELECT * from D2_69.table_s3_char where id = " + "'" + name + "'"
+        print(season)
 
-    if not player_name == "":
+    if not player_name == "" and (season == "season2" or season == "season3"):
 
         if season == "season2":
             sql = "SELECT * FROM d2_69.table_s2_duo_win_rate_" + player_name
+        elif season == "season3":
+            sql = "SELECT * FROM d2_69.table_s3_duo_win_rate_" + player_name
         else:
             sql = "SELECT * FROM d2_69.table_s3_duo_win_rate_" + player_name
 
@@ -164,6 +254,8 @@ def next_season2():
 
         if season == "season2":
             sql = "SELECT * FROM d2_69.table_s2_relative_record_" + player_name
+        elif season == "season3":
+            sql = "SELECT * FROM d2_69.table_s3_relative_record_" + player_name
         else:
             sql = "SELECT * FROM d2_69.table_s3_relative_record_" + player_name
 
@@ -173,18 +265,27 @@ def next_season2():
 
         if season == "season2":
             sql = "SELECT * FROM d2_69.table_s2_win_lose_straight_" + player_name
+        elif season == "season3":
+            sql = "SELECT * FROM d2_69.table_s3_win_lose_straight_" + player_name
         else:
             sql = "SELECT * FROM d2_69.table_s3_win_lose_straight_" + player_name
 
         cursor.execute(sql)
         data_list_win_lose_straight = cursor.fetchall()
         print(data_list_win_lose_straight)
+
+        name1 = name
     else:
+        if player_name == "":
+
+            name1 = "언랭크"
+        else:
+            name1 = name
+
+        data_list_char = []
         data_list_duo_win_rate = []
         data_list_relative_record = []
         data_list_win_lose_straight = []
-
-        name1 = "언랭크"
 
     now = datetime.now()
 

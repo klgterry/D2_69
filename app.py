@@ -165,7 +165,6 @@ def next_season2():
         cursor.execute(sql)
         data_list = cursor.fetchall()
     else:
-        data_list_temp = []
         sql = "SELECT * from D2_69.table_s2_result where id = " + "'" + name + "'"
 
         cursor.execute(sql)
@@ -179,53 +178,58 @@ def next_season2():
         print(data_list_s2)
         print(data_list_s3)
 
-        for i in data_list_s2:
-            total_game = i[6]
-            total_win = i[7]
-            total_lose = i[8]
-            dru_win = i[10]
-            dru_lose = i[11]
-            ass_win = i[13]
-            ass_lose = i[14]
-            nec_win = i[16]
-            nec_lose = i[17]
-            pala_win = i[19]
-            pala_lose = i[20]
+        if data_list_s2 or data_list_s3:
+            for i in data_list_s2:
+                total_game = i[6]
+                total_win = i[7]
+                total_lose = i[8]
+                dru_win = i[10]
+                dru_lose = i[11]
+                ass_win = i[13]
+                ass_lose = i[14]
+                nec_win = i[16]
+                nec_lose = i[17]
+                pala_win = i[19]
+                pala_lose = i[20]
 
-        for i in data_list_s3:
-            total_game = int(total_game) + int(i[6])
-            total_win = int(total_win) + int(i[7])
-            total_lose = int(total_lose) + int(i[8])
-            if not total_game == 0:
-                total_win_rate = str(round(total_win/total_game * 100, 2)) + "%"
-            else:
-                total_win_rate = "0%"
-            dru_win = int(dru_win) + int(i[10])
-            dru_lose = int(dru_lose) + int(i[11])
-            if not dru_win + dru_lose == 0:
-                dru_win_rate = str(round(dru_win / (dru_win + dru_lose) * 100, 2)) + "%"
-            else:
-                dru_win_rate = "0%"
-            ass_win = int(ass_win) + int(i[13])
-            ass_lose = int(ass_lose) + int(i[14])
-            if not ass_win + ass_lose == 0:
-                ass_win_rate = str(round(ass_win / (ass_win + ass_lose) * 100, 2)) + "%"
-            else:
-                ass_win_rate = "0%"
-            nec_win = int(nec_win) + int(i[16])
-            nec_lose = int(nec_lose) + int(i[17])
-            if not nec_win + nec_lose == 0:
-                nec_win_rate = str(round(nec_win / (nec_win + nec_lose) * 100, 2)) + "%"
-            else:
-                nec_win_rate = "0%"
-            pala_win = int(pala_win) + int(i[19])
-            pala_lose = int(pala_lose) + int(i[20])
-            if not pala_win + pala_lose == 0:
-                pala_win_rate = str(round(pala_win / (pala_win + pala_lose) * 100, 2)) + "%"
-            else:
-                pala_win_rate = "0%"
+            for i in data_list_s3:
+                total_game = int(total_game) + int(i[6])
+                total_win = int(total_win) + int(i[7])
+                total_lose = int(total_lose) + int(i[8])
+                if not total_game == 0:
+                    total_win_rate = str(round(total_win / total_game * 100, 2)) + "%"
+                else:
+                    total_win_rate = "0%"
+                dru_win = int(dru_win) + int(i[10])
+                dru_lose = int(dru_lose) + int(i[11])
+                if not dru_win + dru_lose == 0:
+                    dru_win_rate = str(round(dru_win / (dru_win + dru_lose) * 100, 2)) + "%"
+                else:
+                    dru_win_rate = "0%"
+                ass_win = int(ass_win) + int(i[13])
+                ass_lose = int(ass_lose) + int(i[14])
+                if not ass_win + ass_lose == 0:
+                    ass_win_rate = str(round(ass_win / (ass_win + ass_lose) * 100, 2)) + "%"
+                else:
+                    ass_win_rate = "0%"
+                nec_win = int(nec_win) + int(i[16])
+                nec_lose = int(nec_lose) + int(i[17])
+                if not nec_win + nec_lose == 0:
+                    nec_win_rate = str(round(nec_win / (nec_win + nec_lose) * 100, 2)) + "%"
+                else:
+                    nec_win_rate = "0%"
+                pala_win = int(pala_win) + int(i[19])
+                pala_lose = int(pala_lose) + int(i[20])
+                if not pala_win + pala_lose == 0:
+                    pala_win_rate = str(round(pala_win / (pala_win + pala_lose) * 100, 2)) + "%"
+                else:
+                    pala_win_rate = "0%"
 
-        data_list = ((total_game, total_win, total_lose, total_win_rate, dru_win, dru_lose, dru_win_rate, ass_win, ass_lose, ass_win_rate, nec_win, nec_lose, nec_win_rate, pala_win, pala_lose, pala_win_rate),)
+            data_list = ((total_game, total_win, total_lose, total_win_rate, dru_win, dru_lose, dru_win_rate, ass_win,
+                          ass_lose, ass_win_rate, nec_win, nec_lose, nec_win_rate, pala_win, pala_lose, pala_win_rate),)
+        else:
+            data_list = []
+
         #data_list_temp1 = []
         #data_list_temp1.append([])
         #data_list_temp1[0].append(tuple(data_list_temp))
